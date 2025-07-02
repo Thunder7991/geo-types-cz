@@ -40,7 +40,8 @@ export {
   isFeature,
   isFeatureCollection,
   createFeature,
-  createFeatureCollection
+  createFeatureCollection,
+  createCircle
 } from './feature';
 
 // 导出坐标参考系统类型

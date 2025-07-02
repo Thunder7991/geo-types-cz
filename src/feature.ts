@@ -2,7 +2,8 @@
  * GeoJSON要素类型定义
  */
 
-import { Geometry } from './geometry';
+import { Geometry, Position } from './geometry';
+import { calculateDestination } from './utils';
 
 // 要素类型枚举
 export enum FeatureType {
@@ -67,4 +68,16 @@ export function createFeatureCollection<G extends Geometry, P extends Properties
     type: FeatureType.FeatureCollection,
     features
   };
+}
+
+// 创建圆形
+export function createCircle(center: Position, radius: number, points: number = 36): Position[] {
+  const circle: Position[] = []
+  for (let i = 0; i < points; i++) {
+    const bearing = (360 / points) * i
+    const point = calculateDestination(center, radius, bearing)
+    circle.push(point)
+  }
+  circle.push(circle[0]) // 闭合圆形
+  return circle
 }

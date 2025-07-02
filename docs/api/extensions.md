@@ -346,25 +346,6 @@ const satelliteLayer: RasterLayer = {
 
 点聚类配置。
 
-```typescript
-interface ClusterConfig {
-  enabled: boolean
-  distance: number
-  maxZoom: number
-  minPoints?: number
-  style?: {
-    cluster: Style
-    clusterText: {
-    font: string
-    size: number
-    color: string
-    haloColor?: string
-    haloWidth?: number
-  }
-  }
-}
-```
-
 **示例:**
 ```typescript
 import { ClusterConfig } from 'geo-types-cz'
