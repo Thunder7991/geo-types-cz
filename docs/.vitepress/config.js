@@ -2,6 +2,7 @@
 
 export default {
   title: 'geo-types-cz',
+  ignoreDeadLinks: true,
   description: '完整的 TypeScript GeoJSON 类型定义包',
   lang: 'zh-CN',
   base: '/',

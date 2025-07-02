@@ -233,5 +233,4 @@ const xian80 = CommonCRS.Xian80     // 西安80坐标系
 如果你遇到问题或有建议，欢迎：
 
 - 查看 [GitHub Issues](https://github.com/Thunder7991/geo-types-cz/issues)
-- 参与 [GitHub Discussions](https://github.com/Thunder7991/geo-types-cz/discussions)
 - 阅读完整的 [API 文档](/api/)

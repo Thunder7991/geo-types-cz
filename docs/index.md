@@ -95,10 +95,7 @@ console.log(`距离: ${Math.round(distance / 1000)}公里`)
 npm install geo-types-cz
 ```
 
-[查看完整安装指南 →](/guide/installation)
-
 ## 社区
 
 - [GitHub Issues](https://github.com/Thunder7991/geo-types-cz/issues) - 报告问题或提出建议
-- [GitHub Discussions](https://github.com/Thunder7991/geo-types-cz/discussions) - 社区讨论
 - [NPM](https://www.npmjs.com/package/geo-types-cz) - 包管理
