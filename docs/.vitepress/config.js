@@ -5,7 +5,7 @@ export default {
   ignoreDeadLinks: true,
   description: '完整的 TypeScript GeoJSON 类型定义包',
   lang: 'zh-CN',
-  base: '/',
+  base: '/gtcz/',
   
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
