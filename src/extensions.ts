@@ -135,8 +135,11 @@ export interface MapView {
 // 地图配置
 export interface MapConfig {
   container: string | any; // DOM Element or string selector
-  view: MapView;
-  layers?: Layer[];
+  center?: [number, number]; // [longitude, latitude]
+  zoom?: number;
+  bearing?: number; // 地图旋转角度
+  pitch?: number; // 地图倾斜角度
+  bounds?: [number, number, number, number]; // [west, south, east, north]
   controls?: {
     zoom?: boolean;
     attribution?: boolean;
