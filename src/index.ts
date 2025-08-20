@@ -114,14 +114,6 @@ export {
   createBuffer
 } from './utils';
 
-// 版本信息
-export const VERSION = '1.0.0';
-
-// 默认导出
-export default {
-  VERSION
-};
-
 /**
  * 使用示例：
  * 
