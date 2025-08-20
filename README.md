@@ -2,6 +2,9 @@
 
 🌍 完整的 TypeScript GeoJSON 类型定义包，专为前端 GIS 开发设计
 
+🌐 **官方文档**: https://thunder7991.github.io/geo-types-cz
+
+📦 NPM: https://www.npmjs.com/package/geo-types-cz
 ## 特性
 
 - ✅ **完整的 GeoJSON 支持** - 基于 RFC 7946 标准
@@ -9,7 +12,6 @@
 - 🚀 **扩展功能** - 包含样式、图层、查询等 GIS 扩展类型
 - 🛠️ **实用工具** - 内置常用的地理计算函数
 - 📦 **零依赖** - 轻量级，无外部依赖
-- 📦 NPM: https://www.npmjs.com/package/geo-types-cz
 - 🌏 **中文友好** - 支持中国常用坐标系
 
 ## 安装
