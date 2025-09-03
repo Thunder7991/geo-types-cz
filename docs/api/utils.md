@@ -343,37 +343,6 @@ function boundsToPolygon(bounds: BBox): Polygon {
 const boundingBox = boundsToPolygon(bounds)
 ```
 
-## 几何变换
-
-目前包中不包含几何变换函数。如需进行坐标变换，可以手动实现：
-
-```typescript
-import { Point, LineString, Polygon } from 'geo-types-cz'
-
-// 手动实现坐标变换
-function transformPoint(point: Point, transformer: (pos: [number, number]) => [number, number]): Point {
-  return {
-    type: 'Point',
-    coordinates: transformer(point.coordinates as [number, number])
-  }
-}
-
-function transformLineString(line: LineString, transformer: (pos: [number, number]) => [number, number]): LineString {
-  return {
-    type: 'LineString',
-    coordinates: line.coordinates.map(coord => transformer(coord as [number, number]))
-  }
-}
-
-// 示例：坐标偏移
-const point: Point = {
-  type: 'Point',
-  coordinates: [116.3974, 39.9093]
-}
-
-const offsetPoint = transformPoint(point, ([x, y]) => [x + 0.01, y + 0.01])
-console.log('偏移后的点:', offsetPoint)
-```
 
 ## 几何简化
 

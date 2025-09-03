@@ -218,43 +218,6 @@ console.log(isNamedCRS(namedCRS))   // true
 console.log(isLinkedCRS(linkedCRS)) // true
 ```
 
-## 坐标转换
-
-坐标转换功能在当前包中不可用。如需进行坐标转换，请使用专门的投影库如 proj4js。
-
-```typescript
-// 注意：transformCoordinates 和 transformGeometry 函数在当前包中不可用
-// 推荐使用 proj4js 等专门的投影库进行坐标转换
-
-// 示例（需要安装 proj4js）:
-// import proj4 from 'proj4'
-// const result = proj4('EPSG:4326', 'EPSG:3857', [116.3974, 39.9093])
-```
-
-### 几何对象坐标转换
-
-目前包中不包含几何对象坐标转换函数。如需进行几何对象的坐标转换，请使用专门的投影库：
-
-```typescript
-// 注意：transformGeometry 函数在当前包中不可用
-// 推荐使用 proj4js 等专门的投影库进行坐标转换
-
-// 示例（需要安装 proj4js）:
-// import proj4 from 'proj4'
-// import { Point } from 'geo-types-cz'
-// 
-// const point: Point = {
-//   type: 'Point',
-//   coordinates: [116.3974, 39.9093]
-// }
-// 
-// // 使用 proj4js 进行坐标转换
-// const transformed = proj4('EPSG:4326', 'EPSG:3857', point.coordinates)
-// const transformedPoint: Point = {
-//   type: 'Point',
-//   coordinates: transformed
-// }
-```
 
 ## 中国坐标系详解
 
