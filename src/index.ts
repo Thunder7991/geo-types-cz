@@ -63,6 +63,7 @@ export {
   BBox2D,
   BBox3D,
   BBox,
+  validateBBox,
   BoundingBox,
   is2DBBox,
   is3DBBox,
@@ -72,7 +73,8 @@ export {
   objectToBBox,
   unionBBox,
   isPositionInBBox,
-  getBBoxCenter
+  getBBoxCenter,
+  calcGeometryBBox
 } from './bbox';
 
 // 导出扩展类型
@@ -113,6 +115,11 @@ export {
   simplifyLineString,
   createBuffer
 } from './utils';
+
+
+//导出服务函数
+export {getAddressByGeocoder} from "./service"
+
 
 /**
  * 使用示例：

@@ -48,7 +48,8 @@ export default {
             { text: '坐标参考系统', link: '/api/crs' },
             { text: '边界框', link: '/api/bbox' },
             { text: '扩展类型', link: '/api/extensions' },
-            { text: '工具函数', link: '/api/utils' }
+            { text: '工具函数', link: '/api/utils' },
+            { text: '服务函数', link: '/api/service' }
           ]
         }
       ],

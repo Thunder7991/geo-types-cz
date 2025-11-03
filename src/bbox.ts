@@ -2,7 +2,7 @@
  * 边界框(BBox)类型定义和工具函数
  */
 
-import { Position } from './geometry';
+import { GeometryType, Polygon, Position } from './geometry';
 
 // 2D边界框 [west, south, east, north]
 export type BBox2D = [number, number, number, number];
@@ -68,6 +68,20 @@ export function bboxToObject(bbox: BBox): BoundingBox {
     };
   }
 }
+//bbox转换为多边形
+export function bboxToPolygon(bbox: BBox): Polygon {
+  const [minX, minY, maxX, maxY] = bbox
+  return {
+    type: GeometryType.Polygon,
+    coordinates: [[
+      [minX, minY],
+      [maxX, minY],
+      [maxX, maxY],
+      [minX, maxY],
+      [minX, minY]
+    ]]
+  }
+}
 
 // 从对象转换为边界框数组
 export function objectToBBox(boundingBox: BoundingBox): BBox {
@@ -127,6 +141,25 @@ export function isPositionInBBox(position: Position, bbox: BBox): boolean {
   return inBounds;
 }
 
+/**
+ * @description: 验证bbox（2D）是否符合规范 
+ * @param {any} bbox
+ * @return {*} boolean
+ */
+export function validateBBox(bbox: any): bbox is BBox {
+  if (!Array.isArray(bbox) || bbox.length < 4) {
+    return false
+  }
+  
+  const [minX, minY, maxX, maxY] = bbox
+  return typeof minX === 'number' && 
+         typeof minY === 'number' && 
+         typeof maxX === 'number' && 
+         typeof maxY === 'number' &&
+         minX <= maxX && 
+         minY <= maxY
+}
+
 // 计算边界框的中心点
 export function getBBoxCenter(bbox: BBox): Position {
   const obj = bboxToObject(bbox);
@@ -139,4 +172,35 @@ export function getBBoxCenter(bbox: BBox): Position {
   }
   
   return [centerLon, centerLat];
+}
+
+/**
+ * @description: 根据paths计算bbox
+ * @param {any} Position[]
+ * @return {*}
+ */
+export function calcGeometryBBox(geometry: Position[]) {
+  let minLng = Infinity,
+    minLat = Infinity,
+    maxLng = -Infinity,
+    maxLat = -Infinity;
+  for (const [lng, lat] of geometry) {
+    if (lng < minLng) minLng = lng;
+    if (lat < minLat) minLat = lat;
+    if (lng > maxLng) maxLng = lng;
+    if (lat > maxLat) maxLat = lat;
+  }
+
+  // 适度留白，避免多边形贴边
+  const padLng = 0.001;
+  const padLat = 0.001;
+
+  minLng = minLng - padLng;
+  minLat = minLat - padLat;
+  maxLng = maxLng + padLng;
+  maxLat = maxLat + padLat;
+  return {
+    southWest: [minLng, minLat],
+    northEast: [maxLng, maxLat],
+  };
 }

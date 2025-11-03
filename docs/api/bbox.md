@@ -131,6 +131,26 @@ const polygonBBox = calculateGeometryBBox(polygon)
 console.log(polygonBBox) // [116.3, 39.9, 116.5, 40.1]
 ```
 
+### 从路径数组创建边界框
+
+使用 `calcGeometryBBox` 函数从路径数组创建边界框。
+
+```typescript
+import { calcGeometryBBox } from 'geo-types-cz'
+
+// 示例路径数组（经度, 纬度）
+const path = [
+  [116.3974, 39.9093],
+  [116.4074, 39.9193],
+  [116.4174, 39.9293],
+  ...
+]
+
+// 创建边界框
+const bbox = calcGeometryBBox(path)
+console.log(bbox) // [116.3974, 39.9093, 116.4174, 39.9293]
+```
+
 ## 边界框操作
 
 ### 边界框属性获取
@@ -278,44 +298,22 @@ console.log('边界框字符串:', bboxString) // "[116.3,39.9,116.5,40.1]"
 使用可用的验证函数：
 
 ```typescript
-import { isBBox } from 'geo-types-cz'
-
+import { is2DBBox,validateBBox } from 'geo-types-cz'
+//is2DBBox：仅校验长度是否为4
+//validateBBox：校验边界框是否有效（长度是否为4，坐标是否为数字，且minX<=maxX，minY<=maxY）
+//大多数情况下，仅使用validateBBox即可
 const validBBox = [116.3, 39.9, 116.5, 40.1]
 const invalidBBox = [116.3, 39.9, 116.5] // 缺少坐标
 
 // 使用类型守卫验证边界框
-console.log('有效边界框:', isBBox(validBBox))   // true
-console.log('无效边界框:', isBBox(invalidBBox)) // false
+console.log('有效边界框:', is2DBBox(validBBox))   // true
+console.log('无效边界框:', is2DBBox(invalidBBox)) // false
 
 // 手动验证边界框有效性
-function validateBBox(bbox: any): bbox is BBox {
-  if (!Array.isArray(bbox) || bbox.length < 4) {
-    return false
-  }
-  
-  const [minX, minY, maxX, maxY] = bbox
-  return typeof minX === 'number' && 
-         typeof minY === 'number' && 
-         typeof maxX === 'number' && 
-         typeof maxY === 'number' &&
-         minX <= maxX && 
-         minY <= maxY
-}
+console.log('有效边界框:', validateBBox(validBBox))   // true
+console.log('无效边界框:', validateBBox(invalidBBox)) // false
 
-// 标准化边界框
-function normalizeBBox(bbox: BBox): BBox {
-  const [x1, y1, x2, y2] = bbox
-  return [
-    Math.min(x1, x2),
-    Math.min(y1, y2),
-    Math.max(x1, x2),
-    Math.max(y1, y2)
-  ]
-}
 
-const unnormalizedBBox: BBox = [116.5, 40.1, 116.3, 39.9]
-const normalizedBBox = normalizeBBox(unnormalizedBBox)
-console.log('标准化后:', normalizedBBox) // [116.3, 39.9, 116.5, 40.1]
 ```
 
 ## 最佳实践
@@ -325,7 +323,7 @@ console.log('标准化后:', normalizedBBox) // [116.3, 39.9, 116.5, 40.1]
 ```typescript
 import { 
   BBox, 
-  isBBox, 
+  validateBBox, 
   createBBox2D, 
   createBBox3D, 
   getBBoxCenter, 
@@ -339,7 +337,7 @@ function safeBBoxOperation<T>(
   bbox: any,
   operation: (validBBox: BBox) => T
 ): T | null {
-  if (!isBBox(bbox)) {
+  if (!validateBBox(bbox)) {
     console.warn('无效的边界框:', bbox)
     return null
   }
