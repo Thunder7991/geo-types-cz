@@ -1,6 +1,6 @@
 {
   "name": "geo-types-cz",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Complete TypeScript type definitions for GeoJSON and extended GIS types",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -36,5 +36,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Thunder7991/geo-types-cz.git"
+  },
+  "dependencies": {
+    "point-in-polygon-hao": "^1.2.4"
   }
 }

@@ -154,37 +154,6 @@ export interface MapConfig {
   };
 }
 
-// 空间查询类型
-export enum SpatialQueryType {
-  Intersects = 'intersects',
-  Contains = 'contains',
-  Within = 'within',
-  Touches = 'touches',
-  Crosses = 'crosses',
-  Overlaps = 'overlaps'
-}
-
-// 空间查询接口
-export interface SpatialQuery {
-  type: SpatialQueryType;
-  geometry: Geometry;
-  buffer?: number; // 缓冲区距离
-}
-
-// 属性查询接口
-export interface AttributeQuery {
-  field: string;
-  operator: '=' | '!=' | '>' | '<' | '>=' | '<=' | 'like' | 'in' | 'not in';
-  value: any;
-}
-
-// 复合查询接口
-export interface Query {
-  spatial?: SpatialQuery;
-  attributes?: AttributeQuery[];
-  logic?: 'and' | 'or';
-}
-
 // 类型守卫函数
 export function isVectorLayer(layer: Layer): layer is VectorLayer {
   return layer.type === LayerType.Vector;

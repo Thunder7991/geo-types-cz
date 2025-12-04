@@ -35,7 +35,4 @@ features:
   - icon: 🎨
     title: 扩展功能
     details: 提供样式、图层、查询等 GIS 扩展类型，满足复杂的前端地图应用需求。
-  - icon: 🌏
-    title: 中文友好
-    details: 支持中国常用坐标系（CGCS2000、北京54、西安80），完整的中文文档。
 ---

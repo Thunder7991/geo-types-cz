@@ -6,6 +6,7 @@
 import { Position, Geometry, Point, LineString, Polygon, GeometryType } from './geometry';
 import { Feature, FeatureCollection } from './feature';
 import { BBox, createBBox2D } from './bbox';
+import inside from 'point-in-polygon-hao'
 
 // 地球半径（米）
 const EARTH_RADIUS = 6378137;
@@ -287,3 +288,16 @@ export function createBuffer(geometry: Point, distance: number): Polygon {
     ]]
   };
 }
+
+/**
+ * @description: 判断点是否在多边形内/外/边界上
+ * @param {Position} point 点坐标
+ * @param {Position[][]} polygon 多边形坐标，格式为[[[lon, lat], [lon, lat], ...]]
+ * @return {*} 0: 点在多边形边界上，true: 点在多边形内，false: 点在多边形外
+ */
+export function isPointInPolygon(point: Position, polygon:Position[][] ): boolean | 0 {
+  return inside(point, polygon);
+}
+
+
+

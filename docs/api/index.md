@@ -10,7 +10,6 @@ geo-types-cz 提供了完整的 TypeScript GeoJSON 类型定义和实用工具�
 |------|------|----------|
 | [几何类型](/api/geometry) | GeoJSON 几何对象类型定义 | Point, LineString, Polygon 等 |
 | [要素类型](/api/feature) | GeoJSON 要素类型定义 | Feature, FeatureCollection 等 |
-| [坐标参考系统](/api/crs) | 坐标系统定义和常用坐标系 | WGS84, Web Mercator, CGCS2000 等 |
 | [边界框](/api/bbox) | 边界框类型和工具函数 | BBox, 边界框计算 |
 | [扩展类型](/api/extensions) | GIS 应用扩展类型 | 样式, 图层, 查询等 |
 | [工具函数](/api/utils) | 地理计算和实用工具 | 距离计算, 方位角, 面积等 |
@@ -72,7 +71,6 @@ GeoJSON
 扩展类型
 ├── Style
 ├── Layer
-├── SpatialQuery
 └── MapConfig
 ```
 
@@ -201,19 +199,6 @@ const layer = createVectorLayer(
 )
 ```
 
-### 3. 空间查询
-
-```typescript
-import { SpatialQueryType, SpatialQuery } from 'geo-types-cz'
-
-const query: SpatialQuery = {
-  type: SpatialQueryType.Intersects,
-  geometry: polygon,
-  properties: {
-    category: 'restaurant'
-  }
-}
-```
 
 ## 错误处理
 

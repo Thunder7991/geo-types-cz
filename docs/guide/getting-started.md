@@ -205,20 +205,6 @@ const layer = createVectorLayer(
 )
 ```
 
-## 坐标参考系统
-
-支持常用的坐标参考系统，特别是中国常用的坐标系：
-
-```typescript
-import { CommonCRS } from 'geo-types-cz'
-
-// 使用预定义的坐标系
-const wgs84 = CommonCRS.WGS84        // WGS84 地理坐标系
-const webMercator = CommonCRS.WebMercator  // Web墨卡托投影
-const cgcs2000 = CommonCRS.CGCS2000  // 中国大地坐标系2000
-const beijing54 = CommonCRS.Beijing54 // 北京54坐标系
-const xian80 = CommonCRS.Xian80     // 西安80坐标系
-```
 
 ## 下一步
 

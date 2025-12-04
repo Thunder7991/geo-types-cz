@@ -389,30 +389,12 @@ console.log('简化后点数:', simplifiedLine.coordinates.length)
 
 ## 空间关系判断
 
-目前包中不包含空间关系判断函数。如需进行空间分析，可以使用第三方库如 Turf.js：
+### isPointInPolygon
+
+判断点是否在多边形内/外/边界上。
 
 ```typescript
-import { Position, Polygon } from 'geo-types-cz'
-// 注意：需要安装 @turf/turf
-// npm install @turf/turf
-
-// 手动实现简单的点在多边形内判断（射线法）
-function isPointInPolygon(point: Position, polygon: Polygon): boolean {
-  const [x, y] = point
-  const coords = polygon.coordinates[0] // 外环
-  let inside = false
-  
-  for (let i = 0, j = coords.length - 1; i < coords.length; j = i++) {
-    const [xi, yi] = coords[i]
-    const [xj, yj] = coords[j]
-    
-    if (((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi)) {
-      inside = !inside
-    }
-  }
-  
-  return inside
-}
+import { isPointInPolygon } from 'geo-types-cz'
 
 // 使用示例
 const polygon: Polygon = {
@@ -427,7 +409,7 @@ const polygon: Polygon = {
 }
 
 const testPoint: Position = [116.4, 40.0]
-const isInside = isPointInPolygon(testPoint, polygon)
+const isInside = isPointInPolygon(testPoint, polygon.coordinates[0])
 console.log('点是否在多边形内:', isInside)
 ```
 

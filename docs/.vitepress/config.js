@@ -45,7 +45,6 @@ export default {
             { text: '概览', link: '/api/' },
             { text: '几何类型', link: '/api/geometry' },
             { text: '要素类型', link: '/api/feature' },
-            { text: '坐标参考系统', link: '/api/crs' },
             { text: '边界框', link: '/api/bbox' },
             { text: '扩展类型', link: '/api/extensions' },
             { text: '工具函数', link: '/api/utils' },

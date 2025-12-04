@@ -44,20 +44,6 @@ export {
   createCircle
 } from './feature';
 
-// 导出坐标参考系统类型
-export {
-  CRSType,
-  BaseCRS,
-  NamedCRS,
-  LinkedCRS,
-  CRS,
-  CommonCRS,
-  isNamedCRS,
-  isLinkedCRS,
-  createNamedCRS,
-  createLinkedCRS
-} from './crs';
-
 // 导出边界框类型
 export {
   BBox2D,
@@ -91,10 +77,6 @@ export {
   Layer,
   MapView,
   MapConfig,
-  SpatialQueryType,
-  SpatialQuery,
-  AttributeQuery,
-  Query,
   isVectorLayer,
   isRasterLayer,
   isTileLayer,
@@ -113,7 +95,8 @@ export {
   calculateGeometryBBox,
   calculateFeatureCollectionBBox,
   simplifyLineString,
-  createBuffer
+  createBuffer,
+  isPointInPolygon
 } from './utils';
 
 

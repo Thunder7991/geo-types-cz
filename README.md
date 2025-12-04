@@ -4,7 +4,6 @@
 
 🌐 **官方文档**: https://thunder7991.github.io/geo-types-cz
 
-📦 NPM: https://www.npmjs.com/package/geo-types-cz
 ## 特性
 
 - ✅ **完整的 GeoJSON 支持** - 基于 RFC 7946 标准
@@ -185,7 +184,6 @@ const mergedBBox = unionBBox(bbox, geomBBox);
 - `Style` - 样式定义
 - `Layer` - 图层类型（矢量、栅格、瓦片）
 - `MapConfig` - 地图配置
-- `Query` - 空间和属性查询
 
 ### 工具函数
 
@@ -258,22 +256,6 @@ const heatmapStyle: Style = {
 };
 ```
 
-### 空间分析
-```typescript
-import { SpatialQuery, AttributeQuery } from 'geo-types-cz';
-
-const spatialQuery: SpatialQuery = {
-  type: 'intersects',
-  geometry: polygon,
-  buffer: 1000
-};
-
-const attributeQuery: AttributeQuery = {
-  field: 'population',
-  operator: '>',
-  value: 100000
-};
-```
 
 ## 兼容性
 
