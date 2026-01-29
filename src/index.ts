@@ -96,7 +96,8 @@ export {
   calculateFeatureCollectionBBox,
   simplifyLineString,
   createBuffer,
-  isPointInPolygon
+  isPointInPolygon,
+  calculatePolygonCentroid
 } from './utils';
 
 
