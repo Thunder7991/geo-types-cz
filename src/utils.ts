@@ -115,6 +115,53 @@ export function calculatePolygonArea(polygon: Polygon): number {
   return area;
 }
 
+/**
+ * 计算多边形的中心点（质心）
+ * 
+ * @param coordinates 多边形坐标数组，格式为 [[[lon, lat], [lon, lat], ...]]
+ * @returns 中心点坐标 [lon, lat]
+ */
+export function calculatePolygonCentroid (coordinates: Position[][]): Position {
+  let x = 0;
+  let y = 0;
+  let area = 0;
+  // 遍历所有环（外环 + 内环孔洞）
+  // 算法原理：叠加所有环的带符号面积矩
+  // 外环通常为逆时针（正面积），内环为顺时针（负面积），直接累加即可抵消孔洞部分
+  for (const ring of coordinates) {
+    if (!ring || ring.length < 3) continue;
+    for (let i = 0; i < ring.length - 1; i++) {
+      const p1 = ring[i];
+      const p2 = ring[i + 1];
+      const f = p1[0] * p2[1] - p2[0] * p1[1];
+      x += (p1[0] + p2[0]) * f;
+      y += (p1[1] + p2[1]) * f;
+      area += f * 3;
+    }
+  }
+
+  // 如果面积为0（如退化多边形或空数据），回退到计算所有点的几何中心（平均值）
+  if (area === 0) {
+    const outerRing = coordinates[0];
+    if (!outerRing || outerRing.length === 0) return [0, 0];
+    
+    // 移除闭合点（如果存在）以避免权重偏差
+    const len = outerRing.length > 1 && 
+      outerRing[0][0] === outerRing[outerRing.length-1][0] && 
+      outerRing[0][1] === outerRing[outerRing.length-1][1] 
+      ? outerRing.length - 1 
+      : outerRing.length;
+
+    let sumX = 0, sumY = 0;
+    for (let i = 0; i < len; i++) {
+      sumX += outerRing[i][0];
+      sumY += outerRing[i][1];
+    }
+    return [sumX / len, sumY / len];
+  }
+  return [x / area, y / area];
+}
+
 // 计算几何对象的边界框
 export function calculateGeometryBBox(geometry: Geometry): BBox {
   let minLon = Infinity;
@@ -298,6 +345,7 @@ export function createBuffer(geometry: Point, distance: number): Polygon {
 export function isPointInPolygon(point: Position, polygon:Position[][] ): boolean | 0 {
   return inside(point, polygon);
 }
+
 
 
 

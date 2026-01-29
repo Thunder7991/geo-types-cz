@@ -235,6 +235,37 @@ const netArea = calculatePolygonArea(polygonWithHole)
 console.log(`净面积: ${netArea.toFixed(0)} 平方米`)
 ```
 
+### calculatePolygonCentroid 
+
+计算多边形的中心点（质心）。
+
+```typescript
+function calculatePolygonCentroid (coordinates: Position[][]): Position
+```
+
+**参数:**
+- `coordinates`: 多边形坐标数组，格式为 `[[[lon, lat], [lon, lat], ...]]`
+
+**返回值:**
+- 中心点坐标 `[lon, lat]`
+
+**示例:**
+```typescript
+import { calculatePolygonCentroid  } from 'geo-types-cz'
+
+const polygonCoords = [[
+  [116.3, 39.9],
+  [116.5, 39.9],
+  [116.5, 40.1],
+  [116.3, 40.1],
+  [116.3, 39.9]
+]]
+
+const centroid = calculatePolygonCentroid (polygonCoords)
+console.log('中心点:', centroid)
+// 输出: [116.4, 40.0]
+```
+
 ## 长度计算
 
 ### calculateLineLength
@@ -343,6 +374,35 @@ function boundsToPolygon(bounds: BBox): Polygon {
 const boundingBox = boundsToPolygon(bounds)
 ```
 
+## 缓冲区计算
+
+### createBuffer
+
+为点创建一个简单的矩形缓冲区。
+
+```typescript
+function createBuffer(geometry: Point, distance: number): Polygon
+```
+
+**参数:**
+- `geometry`: 点几何对象
+- `distance`: 缓冲区半径（米）
+
+**返回值:**
+- 缓冲区多边形
+
+**示例:**
+```typescript
+import { createBuffer, Point } from 'geo-types-cz'
+
+const point: Point = {
+  type: 'Point',
+  coordinates: [116.3974, 39.9093]
+}
+
+const buffer = createBuffer(point, 1000) // 1公里缓冲区
+console.log('缓冲区:', buffer)
+```
 
 ## 几何简化
 
@@ -409,9 +469,25 @@ const polygon: Polygon = {
 }
 
 const testPoint: Position = [116.4, 40.0]
-const isInside = isPointInPolygon(testPoint, polygon.coordinates[0])
+const isInside = isPointInPolygon(testPoint, polygon.coordinates)
 console.log('点是否在多边形内:', isInside)
 ```
+
+## 其他工具
+
+### calculateFeatureCollectionBBox
+
+计算要素集合的边界框。
+
+```typescript
+function calculateFeatureCollectionBBox(featureCollection: FeatureCollection): BBox
+```
+
+**参数:**
+- `featureCollection`: 要素集合对象
+
+**返回值:**
+- 边界框 `[minX, minY, maxX, maxY]`
 
 ## 性能优化建议
 
