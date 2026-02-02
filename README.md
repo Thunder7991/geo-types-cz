@@ -58,7 +58,8 @@ import {
   calculateBearing, 
   calculateDestination,
   calculatePolygonArea,
-  calculatePolygonCentroid 
+  calculatePolygonCentroid,
+  calcCirclePolygon
 } from 'geo-types-cz';
 
 // 计算两点间距离（米）

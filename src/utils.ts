@@ -346,6 +346,31 @@ export function isPointInPolygon(point: Position, polygon:Position[][] ): boolea
   return inside(point, polygon);
 }
 
+/**
+ * 根据中心点和半径创建圆形多边形
+ * 
+ * @param center 中心点坐标 [lon, lat]
+ * @param radius 半径（米）
+ * @param steps 圆的段数，默认为 64
+ * @returns GeoJSON 多边形对象
+ */
+export function calcCirclePolygon(center: Position, radius: number, steps: number = 64): Polygon {
+  const coordinates: Position[] = [];
+  
+  for (let i = 0; i < steps; i++) {
+    const bearing = (i * 360) / steps;
+    coordinates.push(calculateDestination(center, radius, bearing));
+  }
+  
+  // 闭合多边形
+  coordinates.push(coordinates[0]);
+  
+  return {
+    type: GeometryType.Polygon,
+    coordinates: [coordinates]
+  };
+}
+
 
 
 

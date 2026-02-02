@@ -473,6 +473,39 @@ const isInside = isPointInPolygon(testPoint, polygon.coordinates)
 console.log('点是否在多边形内:', isInside)
 ```
 
+### calcCirclePolygon
+
+根据中心点和半径创建圆形多边形。
+
+```typescript
+function calcCirclePolygon(
+  center: Position, 
+  radius: number, 
+  steps: number = 64
+): Polygon
+```
+
+**参数:**
+- `center`: 中心点坐标 `[lon, lat]`
+- `radius`: 半径（米）
+- `steps`: 圆的段数，默认为 64，数值越大越平滑
+
+**返回值:**
+- 圆形多边形几何对象
+
+**示例:**
+```typescript
+import { calcCirclePolygon } from 'geo-types-cz'
+
+// 创建一个半径为 500 米的圆，中心在天安门
+const circle = calcCirclePolygon(
+  [116.3974, 39.9093], 
+  500
+)
+
+console.log('圆多边形:', circle)
+```
+
 ## 其他工具
 
 ### calculateFeatureCollectionBBox
