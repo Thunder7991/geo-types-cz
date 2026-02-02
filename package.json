@@ -1,6 +1,6 @@
 {
   "name": "geo-types-cz",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Complete TypeScript type definitions for GeoJSON and extended GIS types",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

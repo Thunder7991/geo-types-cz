@@ -97,7 +97,8 @@ export {
   simplifyLineString,
   createBuffer,
   isPointInPolygon,
-  calculatePolygonCentroid
+  calculatePolygonCentroid,
+  calcCirclePolygon
 } from './utils';
 
 
